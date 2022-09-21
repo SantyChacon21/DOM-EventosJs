@@ -56,12 +56,14 @@ function nuevoAutoVender(array){
     coleccionStock(array)
 }
 
+const formulario = document.getElementById(`myForm`)
 
 let btnInfoAuto = document.getElementById("btnEnviarInfo")
 btnInfoAuto.addEventListener("click", ()=>{nuevoAutoVender(stock)})
+btnInfoAuto.addEventListener("click", ()=>{formulario.reset()})
 
 let btnMostrarStock = document.getElementById(`menuStock`)
 btnMostrarStock.addEventListener("click", ()=>{coleccionStock(stock)})
 
-let formulario = document.getElementById(`myForm`).reset()
-btnMostrarStock.addEventListener(`click`,)
+
+
