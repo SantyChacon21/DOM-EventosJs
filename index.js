@@ -25,9 +25,10 @@ stock.push(new Auto("1", "ford", "raptor", "2022", "12000", "Buena", "Azul", "12
 stock.push(new Auto("2", "chevrolet", "s10", "2020", "60000", "Buena", "Azul", "12000000"))
 stock.push(new Auto("3", "ford", "raptor", "2022", "12.000", "Buena", "Azul", "12000000"))
 stock.push(new Auto("4", "chevrolet", "camaro", "2020", "11000", "Buena", "Azul", "12000000"))
+let coleccionAutos = document.getElementById("divAutos");
 
 function coleccionStock(array){
-    let coleccionAutos = document.getElementById("divAutos");
+    
     coleccionAutos.innerHTML = ``
     array.forEach((Auto)=>{
         let nuevoProducto = document.createElement("div")
@@ -65,5 +66,11 @@ btnInfoAuto.addEventListener("click", ()=>{formulario.reset()})
 let btnMostrarStock = document.getElementById(`menuStock`)
 btnMostrarStock.addEventListener("click", ()=>{coleccionStock(stock)})
 
+let btnOcultarStock = document.getElementById(`btnOcultarMenu`)
 
+function borrarMenuStock(){
+    coleccionAutos.innerHTML = ``
+}
+
+btnOcultarStock.addEventListener("click",borrarMenuStock)
 
