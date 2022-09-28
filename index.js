@@ -59,8 +59,14 @@ function coleccionStock(array){
         let btnCompra = document.getElementById(`comprarBtn${Auto.id}`)
 
         function ComprarVehiculo(){
-            alert(`Felicitaciones por su compra!`)
             console.log(Auto)
+            Swal.fire({
+                icon: 'success',
+                title: 'Felicitaciones Por Su Compra',
+                text: 'Su compra se puede ver en la consola',
+                footer: '<a href="">Alguna consulta? Mande su pregunta al staff</a>'
+              })
+              
         }
 
         btnCompra.addEventListener(`click`, ComprarVehiculo)
@@ -100,10 +106,5 @@ function borrarMenuStock(){
 
 btnOcultarStock.addEventListener("click",borrarMenuStock)
 
-
-
-/* let btnCompras = document.getElementById(`btnCompra${Auto.id}`)
-btnCompras.addEventListener("click", ()=>{console.log(`Hola puta`)}) */
-/* btnCompraVerde.addEventListener(`click`, ()=>{console.log(`El producto fue comprado`)}) */
 
 
