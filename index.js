@@ -6,7 +6,6 @@ let tituloPrincipal = document.getElementById("tituloGraf")
 
 tituloPrincipal.addEventListener("click", titulo);
 
-const stock = []
 
 class Auto{
     constructor(id,marca, modelo, anio, km, condicion, color, precio){
@@ -21,11 +20,25 @@ class Auto{
         this.vendido = false
     }
 }
-stock.push(new Auto("1", "ford", "raptor", "2022", "12000", "Buena", "Azul", "12000000"))
-stock.push(new Auto("2", "chevrolet", "s10", "2020", "60000", "Buena", "Azul", "12000000"))
-stock.push(new Auto("3", "ford", "raptor", "2022", "12.000", "Buena", "Azul", "12000000"))
-stock.push(new Auto("4", "chevrolet", "camaro", "2020", "11000", "Buena", "Azul", "12000000"))
+
+
+
+let stock = []
+if (localStorage.getItem("stock")){
+    stock = JSON.parse(localStorage.getItem("stock"))
+}else{
+    console.log(`Cargando el proceso`)
+    stock.push(new Auto("1", "ford", "raptor", "2022", "12000", "Buena", "Azul", "12000000"))
+    stock.push(new Auto("2", "chevrolet", "s10", "2020", "60000", "Buena", "Azul", "12000000"))
+    stock.push(new Auto("3", "ford", "raptor", "2022", "12.000", "Buena", "Azul", "12000000"))
+    stock.push(new Auto("4", "chevrolet", "camaro", "2020", "11000", "Buena", "Azul", "12000000"))
+    localStorage.setItem("stock",JSON.stringify(stock))
+}
+
+
 let coleccionAutos = document.getElementById("divAutos");
+
+
 
 function coleccionStock(array){
     
@@ -38,10 +51,19 @@ function coleccionStock(array){
                                 <p class="card-text">Año: ${Auto.anio} </p>
                                 <p class="card-text">Km: ${Auto.km}km</p>
                                 <p class="card-text">$${Auto.precio}</p>
-                                <a href="#" class="btn btn-danger">Comprar</a>
+                                <a href="#" id="comprarBtn${Auto.id}" class="btn btn-warning">Comprar</a>
                                 </div>
         </div> </a> `
         coleccionAutos.appendChild(nuevoProducto)
+
+        let btnCompra = document.getElementById(`comprarBtn${Auto.id}`)
+
+        function ComprarVehiculo(){
+            alert(`Felicitaciones por su compra!`)
+            console.log(Auto)
+        }
+
+        btnCompra.addEventListener(`click`, ComprarVehiculo)
     })
 }
 
@@ -51,13 +73,17 @@ function nuevoAutoVender(array){
     let aniadirAutoAnio = document.getElementById("anioAniadir")
     let aniadirAutoKm = document.getElementById("kmAniadir")
     let aniadirAutoPrecio = document.getElementById("precioAniadir")
-    let nuevoAuto = new Auto(array.lenght+1 ,aniadirAutoMarca.value, aniadirAutoModelo.value, aniadirAutoAnio.value,aniadirAutoKm.value, "Buena", "Plata", aniadirAutoPrecio.value)
+    let nuevoAuto = new Auto(stock.length+1 ,aniadirAutoMarca.value, aniadirAutoModelo.value, aniadirAutoAnio.value,aniadirAutoKm.value, "Buena", "Plata", aniadirAutoPrecio.value)
     array.push(nuevoAuto)
+    localStorage.setItem("stock", JSON.stringify(stock))
     console.log(array)
     coleccionStock(array)
 }
 
+
+
 const formulario = document.getElementById(`myForm`)
+
 
 let btnInfoAuto = document.getElementById("btnEnviarInfo")
 btnInfoAuto.addEventListener("click", ()=>{nuevoAutoVender(stock)})
@@ -73,4 +99,11 @@ function borrarMenuStock(){
 }
 
 btnOcultarStock.addEventListener("click",borrarMenuStock)
+
+
+
+/* let btnCompras = document.getElementById(`btnCompra${Auto.id}`)
+btnCompras.addEventListener("click", ()=>{console.log(`Hola puta`)}) */
+/* btnCompraVerde.addEventListener(`click`, ()=>{console.log(`El producto fue comprado`)}) */
+
 
