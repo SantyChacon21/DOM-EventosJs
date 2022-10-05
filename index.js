@@ -50,34 +50,34 @@ function coleccionStock(array){
                                 <p class="card-text">Año: ${Auto.anio} </p>
                                 <p class="card-text">Km: ${Auto.km}km</p>
                                 <p class="card-text">$${Auto.precio}</p>
-                                <a href="#" id="comprarBtn${Auto.id}" class="btn btn-warning">Comprar</a>
+                                <a href="#" id="comprarBtn${Auto.id}" class="btn btn-warning">Reservar</a>
                                 </div>
         </div> </a> `
         coleccionAutos.appendChild(nuevoProducto)
 
         let btnCompra = document.getElementById(`comprarBtn${Auto.id}`)
 
-        function agregarAlaReserva(auto){
-            reserva.push(auto)
-        }
-
-        function ComprarVehiculo(){
-            Swal.fire({
-                icon: 'success',
-                title: 'Felicitaciones Por Su Compra',
-                text: 'Su compra se puede ver en la consola',
-                footer: '<a href="">Alguna consulta? Mande su pregunta al staff</a>'
-              })
-        }
-
         btnCompra.addEventListener(`click`, ()=> {
             ComprarVehiculo()
             agregarAlaReserva(Auto)
-            reserva.length > 1? Swal.fire({icon: 'error',  title: 'Oops...',   text: 'Unicamente puedes reservar un auto a la vez',  footer: '<a href="">Alguna consulta? Mande su pregunta al staff</a>'}) : null
-            reserva.length > 1? reserva.splice(1,1) : null
             console.log(Auto)
             console.log(reserva)
-        })        
+            
+        })
+
+        function agregarAlaReserva(auto){
+            reserva.length < 1 && reserva.push(auto) & localStorage.setItem("reserva", JSON.stringify(reserva))
+            btnCompra == reserva[0] <= 1? btnCompra.innerText= `Reservado` : null
+            
+        }
+
+        function ComprarVehiculo(){
+            reserva.length === 0?Swal.fire({icon: 'success', title: 'Felicitaciones Por Su Compra', text: 'Su compra se puede ver en la consola', footer: '<a href="">Alguna consulta? Mande su pregunta al staff</a>' }):Swal.fire({icon: 'error',  title: 'Oops...',   text: 'Unicamente puedes reservar un auto a la vez',  footer: '<a href="">Alguna consulta? Mande su pregunta al staff</a>'})
+/*             let deleteCar = JSON.parse(localStorage.getItem("stock")) */
+            reserva.length === 0? btnCompra.innerText= `Reservado`: btnCompra.innerText= `Reservar`
+        }
+
+
     })
 
 }
