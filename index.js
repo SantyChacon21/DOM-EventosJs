@@ -19,8 +19,8 @@ class Auto{
 
 
 
-let stock = []
-let reserva = []
+let stock = JSON.parse(localStorage.getItem(`stock`)) || []
+let reserva = JSON.parse(localStorage.getItem(`reserva`)) || []
 
 
 if (localStorage.getItem("stock")){
@@ -33,6 +33,8 @@ if (localStorage.getItem("stock")){
     stock.push(new Auto("4", "chevrolet", "camaro", "2020", "11000", "Buena", "Azul", "12000000"))
     localStorage.setItem("stock",JSON.stringify(stock))
 }
+
+
 
 
 let coleccionAutos = document.getElementById("divAutos");
@@ -66,28 +68,20 @@ function coleccionStock(array){
         })
 
         function agregarAlaReserva(auto){
+            Auto.vendido = true
             reserva.length < 1 && reserva.push(auto) & localStorage.setItem("reserva", JSON.stringify(reserva))
             btnCompra == reserva[0] <= 1? btnCompra.innerText= `Reservado` : null
-            
         }
 
         function ComprarVehiculo(){
             reserva.length === 0?Swal.fire({icon: 'success', title: 'Felicitaciones Por Su Compra', text: 'Su compra se puede ver en la consola', footer: '<a href="">Alguna consulta? Mande su pregunta al staff</a>' }):Swal.fire({icon: 'error',  title: 'Oops...',   text: 'Unicamente puedes reservar un auto a la vez',  footer: '<a href="">Alguna consulta? Mande su pregunta al staff</a>'})
-/*             let deleteCar = JSON.parse(localStorage.getItem("stock")) */
             reserva.length === 0? btnCompra.innerText= `Reservado`: btnCompra.innerText= `Reservar`
         }
-
 
     })
 
 }
 
-//Borra los autos del localstorage
-/* function deteleObjtStrg(carID){
-    let objDeleteAction = JSON.parse(localStorage.getItem("stock"))
-    console.log(objDeleteAction[carID])
-}
- */
 
 function nuevoAutoVender(array){
     let aniadirAutoMarca = document.getElementById("marcaAniadir");
@@ -123,4 +117,4 @@ function borrarMenuStock(){
 btnOcultarStock.addEventListener("click",borrarMenuStock)
 
 
-
+/* Register aun en construccion */

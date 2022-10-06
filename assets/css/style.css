@@ -11,3 +11,20 @@
     justify-content: center;
     
 }
+
+.bodyRegister{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: grey;
+    min-height: 90vh;
+}
+
+.formRegister{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 5px 10px black;
+}
