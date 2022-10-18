@@ -114,6 +114,7 @@ btnOcultarStock.addEventListener("click",borrarMenuStock)
 
 let btnReserva = document.getElementById(`btnReserva`)
 
+
 function modalReserva(array){
     modalBody.innerHTML = ``
     array.forEach((reserva)=>{
@@ -139,7 +140,7 @@ btnReserva.addEventListener(`click`, ()=>{
 })
 /* Register aun en construccion */
 
-let registerEmail = document.getElementById(`usernameRegister`)
+/* let registerEmail = document.getElementById(`usernameRegister`)
 
 let registerPassword = document.getElementById(`passwordRegister`)
 
@@ -149,7 +150,7 @@ let registerSurname = document.getElementById(`surnameRegister`)
 
 let btnRegister = document.getElementById(`btnRegister`)
 
-let registros = JSON.parse(localStorage.setItem(`registros`)) || []
+let registros = JSON.parse(localStorage.setItem(`registros`)) || [] */
 
 class Registro{
     constructor(email, contrasenia, nombre, apellido){
@@ -167,4 +168,4 @@ function subirRegistro(array){
     localStorage.setItem("registros", JSON.stringify(registros))
 }
 
-btnRegister.addEventListener(`click`, subirRegistro(registros))
+/* btnRegister.addEventListener(`click`, subirRegistro(registros)) */
