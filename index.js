@@ -1,8 +1,3 @@
-function titulo(){
-    console.log("Hola Bienvenido")
-}
-
-
 class Auto{
     constructor(id,marca, modelo, anio, km, condicion, color, precio){
         this.id = id
@@ -20,7 +15,7 @@ class Auto{
 
 
 let stock = JSON.parse(localStorage.getItem(`stock`)) || []
-let reserva = JSON.parse(localStorage.getItem(`reserva`)) || []
+let reserva  = JSON.parse(localStorage.getItem(`reserva`)) || []
 
 
 if (localStorage.getItem("stock")){
@@ -114,7 +109,62 @@ function borrarMenuStock(){
     coleccionAutos.innerHTML = ``
 }
 
+
 btnOcultarStock.addEventListener("click",borrarMenuStock)
 
+let btnReserva = document.getElementById(`btnReserva`)
 
+function modalReserva(array){
+    modalBody.innerHTML = ``
+    array.forEach((reserva)=>{
+        let nuevoProducto = document.createElement("div")
+        nuevoProducto.innerHTML = `<a href="" class=" text-decoration-none text-black"> <div class="card" id="divAutos" style="width: 18rem;">
+                                <div class="card-body">
+                                <h5 class="card-title">${reserva.marca} ${reserva.modelo}</h5>
+                                <p class="card-text">Año: ${reserva.anio} </p>
+                                <p class="card-text">Km: ${reserva.km}km</p>
+                                <p class="card-text">$${reserva.precio}</p>
+                                </div>
+        </div>`
+        modalBody.appendChild(nuevoProducto)
+})
+}
+
+function noMasDex(array){
+    array.length > 1? array.splice(1,1):null
+}
+
+btnReserva.addEventListener(`click`, ()=>{
+    modalReserva(reserva)
+})
 /* Register aun en construccion */
+
+let registerEmail = document.getElementById(`usernameRegister`)
+
+let registerPassword = document.getElementById(`passwordRegister`)
+
+let registerName = document.getElementById(`nameRegister`)
+
+let registerSurname = document.getElementById(`surnameRegister`)
+
+let btnRegister = document.getElementById(`btnRegister`)
+
+let registros = JSON.parse(localStorage.setItem(`registros`)) || []
+
+class Registro{
+    constructor(email, contrasenia, nombre, apellido){
+        this.email = email
+        this.contrasenia = contrasenia
+        this.nombre = nombre
+        this.apellido = apellido 
+    }
+
+}
+
+function subirRegistro(array){
+    let nuevoRegistro = new Registro(registerEmail.value,registerPassword.value, registerName.value, registerSurname.value)
+    array.push(nuevoRegistro)
+    localStorage.setItem("registros", JSON.stringify(registros))
+}
+
+btnRegister.addEventListener(`click`, subirRegistro(registros))
