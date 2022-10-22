@@ -5,13 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("WiuVzPnssCMDsxkxq");
+   });
+</script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./assets/css/style.css">
+
+
+  </div>
 </head>
 <body>
     <header class="headerIndex">
         <h1 class="tituloHeader">Grafcars</h1>
+        <div class="Clima">
+          <h5 class="city"></h5>
+          <div class="temp"></div>
+          <img src="" alt="" class="icon">
+          <div class="description"></div>
+          <div class="rainPorcentage"></div>
         <ul class="listaMenus">
             <li class="btn" id="menuStock">Autos a la Venta</li>
             <li class="btn" id="btnOcultarMenu">Ocultar autos a la venta</li>
@@ -28,24 +45,111 @@
                   <li><a class="dropdown-item" href="./pages/login.html">Login</a></li>
                   <li><a class="dropdown-item" href="./pages/register.html">Register</a></li>
         </ul>
-        
+
+        <!-- Modal Reserva -->
         <div class="modal fade" id="modalReserva" tabindex="-1" aria-labelledby="modalReservaLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="modalReservaLabel">Modal title</h1>
+                  <h1 class="modal-title fs-5" id="modalReservaLabel">Reserva</h1>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="modalBody">
+                <div class="modalReservaBody" id="modalReservaBody">
                   ...
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
         </div>
+
+        <!-- Modal Venta -->
+        <div class="modal fade" id="modalVenta" tabindex="-1" aria-labelledby="modalVentaLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <i class="fa-solid fa-car-side"></i>
+                <h1 class="modal-title fs-5" id="modalReservaLabel">Venta</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modalReservaBody" id="modalVentaBody">
+                <div class="" style="width: 18rem;">
+                  <div class="divImg"> <img src="./assets/img/32339 (1) (1).png" class="card-img-top imgDiv" alt="..."></div>
+                      <div class="card-body">
+                      <h5 class="card-title">Añadir a la venta</h5>
+                      <form action="" id="myForm" class=" m">
+                          <div class=" mb-3">
+                              <input placeholder="Ingrese Marca" class=" rounded-2 col-5 " type="text" name="Ingrese" id="marcaAniadir">
+                              <input placeholder="Ingrese Modelo" class=" rounded-2 col-6" type="text" name="Ingrese" id="modeloAniadir">
+                          </div>
+                          <input placeholder="Ingrese año" class=" rounded-2 mb-3" type="text" name="Ingrese" id="anioAniadir">
+                          <input placeholder="Ingrese Km" class=" rounded-2 mb-3" type="text" name="Ingrese" id="kmAniadir">
+                          <input placeholder="Ingrese Precio" class=" rounded-2 mb-3" type="text" name="Ingrese" id="precioAniadir">
+                          <a href="#" class="btnAniadirVenta btn" id="btnEnviarInfo">Añadir</a>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <!-- Modal Register-->
+      <div class="modal fade" id="modalRegister" tabindex="-1" aria-labelledby="modalRegisterLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="modalReservaLabel">Registro</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modalReservaBody" id="modalRegisterBody">
+              <form action="" class="formRegister">
+                <h1>Registro</h1>
+                <label for="">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="email" id="usernameRegister">
+                </label>
+                <label for="">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="passwordRegister">
+                </label>
+                <label for="">
+                    <input type="text" placeholder="Ingrese Nombre" id="nameRegister">
+                    <input type="text" placeholder="Ingrese Apellido" id="surnameRegister">
+                </label>
+                <button id="btnRegister">Registrarse</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal Consulta -->
+    <div class="modal fade" id="modalConsulta" tabindex="-1" aria-labelledby="modalConsultaLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="modalConsultaLabel">Consulta</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modalReservaBody" id="modalConsultaBody">
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
     </header>
     <main>
         <h3>Bienvenido a Grafcars</h3>
@@ -68,8 +172,15 @@
                     <a href="#" class="btnAniadirVenta btn btn-danger" id="btnEnviarInfo">Añadir</a>
                     </div>
                 </form>
-            </div>
+              </div>
+        <div id="formularioConsulta"></div>
     </main>
+    <footer>
+      <ul>
+        <li class="btn btnConsulta" id="btnConsulta" data-bs-toggle="modal" data-bs-target="#modalConsulta">Consultas</li>
+      </ul>
+    </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./index.js"></script>

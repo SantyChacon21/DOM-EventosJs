@@ -1,0 +1,43 @@
+[
+    {
+        "id":"1",
+        "marca":"ford",
+        "modelo":"raptor",
+        "anio":2022,
+        "km":12000,
+        "condicion":"Buena",
+        "color":"Azul",
+        "precio":12000000,
+        "vendido":false
+    },
+
+    {"id":"2",
+    "marca":"chevrolet",
+    "modelo":"s10",
+    "anio":2020,
+    "km":60000,
+    "condicion":"Buena",
+    "color":"Azul",
+    "precio":12000000,
+    "vendido":false},
+
+    {"id":"3",
+    "marca":"ford",
+    "modelo":"raptor",
+    "anio":2022,
+    "km":12,
+    "condicion":"Buena",
+    "color":"Azul",
+    "precio":12000000,
+    "vendido":false},
+
+    {"id":"4",
+    "marca":"chevrolet",
+    "modelo":"camaro",
+    "anio":2020,
+    "km":11000,
+    "condicion":"Buena",
+    "color":"Azul",
+    "precio":12000000,
+    "vendido":false}
+]

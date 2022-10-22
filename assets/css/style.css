@@ -12,6 +12,7 @@
     
 }
 
+/* Header Index */
 .headerIndex{
     box-shadow: 0 1px 5px black;
 }
@@ -27,6 +28,26 @@
     justify-content: end;
 }
 
+/* Modal Reserva y venta*/
+
+.modalReservaBody{
+    display: flex;
+    justify-content: center;
+}
+.btnAniadirVenta{
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 1px 5px black;
+}
+
+/* Footer index */
+.btnConsulta{
+    display: flex;
+    justify-content: end;
+    list-style: none;
+    margin-right: 30%;
+    gap: 7%;
+}
 
 .bodyRegister{
     display: flex;

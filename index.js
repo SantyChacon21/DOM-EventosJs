@@ -1,3 +1,4 @@
+
 class Auto{
     constructor(id,marca, modelo, anio, km, condicion, color, precio){
         this.id = id
@@ -14,18 +15,28 @@ class Auto{
 
 
 
-let stock = JSON.parse(localStorage.getItem(`stock`)) || []
+/* let stock = JSON.parse(localStorage.getItem(`stock`)) || [] */
 let reserva  = JSON.parse(localStorage.getItem(`reserva`)) || []
 
+let stock = []
+
+const cargarAutos = async() =>{
+    const response = await fetch("autos.json")
+    const data = await response.json()
+    console.log(data)
+
+    for (let auto of data){
+        let autoNuevo = new Auto(auto.id, auto.marca,auto.modelo, auto.anio,auto.km, auto.condicion, auto.color, auto.precio)
+        stock.push(autoNuevo)
+    }
+}
+
+cargarAutos()
 
 if (localStorage.getItem("stock")){
     stock = JSON.parse(localStorage.getItem("stock"))
 }else{
     console.log(`Cargando el proceso`)
-    stock.push(new Auto("1", "ford", "raptor", "2022", "12000", "Buena", "Azul", "12000000"))
-    stock.push(new Auto("2", "chevrolet", "s10", "2020", "60000", "Buena", "Azul", "12000000"))
-    stock.push(new Auto("3", "ford", "raptor", "2022", "12.000", "Buena", "Azul", "12000000"))
-    stock.push(new Auto("4", "chevrolet", "camaro", "2020", "11000", "Buena", "Azul", "12000000"))
     localStorage.setItem("stock",JSON.stringify(stock))
 }
 
@@ -101,7 +112,10 @@ btnInfoAuto.addEventListener("click", ()=>{nuevoAutoVender(stock)})
 btnInfoAuto.addEventListener("click", ()=>{formulario.reset()})
 
 let btnMostrarStock = document.getElementById(`menuStock`)
-btnMostrarStock.addEventListener("click", ()=>{coleccionStock(stock)})
+btnMostrarStock.addEventListener("click", ()=>{
+    coleccionStock(stock)
+    
+})
 
 let btnOcultarStock = document.getElementById(`btnOcultarMenu`)
 
@@ -115,8 +129,11 @@ btnOcultarStock.addEventListener("click",borrarMenuStock)
 let btnReserva = document.getElementById(`btnReserva`)
 
 
+
+/* Modal para venta */
+
 function modalReserva(array){
-    modalBody.innerHTML = ``
+    modalReservaBody.innerHTML = ``
     array.forEach((reserva)=>{
         let nuevoProducto = document.createElement("div")
         nuevoProducto.innerHTML = `<a href="" class=" text-decoration-none text-black"> <div class="card" id="divAutos" style="width: 18rem;">
@@ -127,7 +144,7 @@ function modalReserva(array){
                                 <p class="card-text">$${reserva.precio}</p>
                                 </div>
         </div>`
-        modalBody.appendChild(nuevoProducto)
+        modalReservaBody.appendChild(nuevoProducto)
 })
 }
 
@@ -135,37 +152,59 @@ function noMasDex(array){
     array.length > 1? array.splice(1,1):null
 }
 
+
 btnReserva.addEventListener(`click`, ()=>{
     modalReserva(reserva)
 })
-/* Register aun en construccion */
 
-/* let registerEmail = document.getElementById(`usernameRegister`)
+/* Fetch Clima */
 
-let registerPassword = document.getElementById(`passwordRegister`)
-
-let registerName = document.getElementById(`nameRegister`)
-
-let registerSurname = document.getElementById(`surnameRegister`)
-
-let btnRegister = document.getElementById(`btnRegister`)
-
-let registros = JSON.parse(localStorage.setItem(`registros`)) || [] */
-
-class Registro{
-    constructor(email, contrasenia, nombre, apellido){
-        this.email = email
-        this.contrasenia = contrasenia
-        this.nombre = nombre
-        this.apellido = apellido 
+let weather ={
+    "apiKey":"a64273766eb2fe301b8852b78aa6dd31",
+    fetchWeather: function(){
+        fetch(
+            "https://api.openweathermap.org/data/2.5/weather?lat=-34.6075682&lon=-58.4370894&appid=a64273766eb2fe301b8852b78aa6dd31"
+        ).then((response) => response.json())
+        .then((data) => this.displayWeather(data))
     }
-
 }
 
-function subirRegistro(array){
-    let nuevoRegistro = new Registro(registerEmail.value,registerPassword.value, registerName.value, registerSurname.value)
-    array.push(nuevoRegistro)
-    localStorage.setItem("registros", JSON.stringify(registros))
+/* Modal fetch mail */
+
+const dataMail = {
+    service_id: `service_c4znnao`,
+    template_id:`template_wablv4x`,
+    user_id:`WiuVzPnssCMDsxkxq`
 }
 
-/* btnRegister.addEventListener(`click`, subirRegistro(registros)) */
+function formConsulta(){
+    modalConsultaBody.innerHTML = ``
+    let nuevaConsulta = document.createElement(`div`)
+    nuevaConsulta.innerHTML = `
+                                <input type="text" id="consultaName" placeholder="Enter Name">
+                                <input type="text" name="" id="cosultaEmail" placeholder="Enter Email">
+                                <button .onclick:'enviarMail()';>Send Email</button>
+                                `
+    
+    modalConsultaBody.appendChild(nuevaConsulta)
+}
+
+
+function enviarMail() {
+    let templateParams = {
+        person_name: document.getElementById(`consultaName`).value,
+        person_email: document.getElementById(`cosultaEmail`).value
+    }
+    emailjs.send('gmail','template_wablv4x', templateParams)
+    .then(function(res){
+        console.log("success", res.status,res.text)
+    }), function(error){
+        console.log('FAILED...', error)
+    }
+}
+
+let btnConsulta = document.getElementById(`btnConsulta`)
+
+btnConsulta.addEventListener(`click`, ()=>{
+    formConsulta()
+})
