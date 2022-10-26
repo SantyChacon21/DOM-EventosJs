@@ -89,6 +89,81 @@ function coleccionStock(array){
 }
 
 
+let btnCompraReserva = document.getElementById(`btnCompraReserva`)
+
+function aceptacionCompra(){
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      swalWithBootstrapButtons.fire({
+        title: 'Estas seguro?',
+        text: "Estas a punto de realizar la compra de un auto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, Comprar!',
+        cancelButtonText: 'No, no comprar :(',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'Enhorabuena, te esperamos con tu vehiculo'
+              })
+              noMasDox()
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'La compra ha sido cancelada, te esperamos pronto :)',
+            'error'
+          )
+        }
+      })
+}
+
+function errorMenos(){
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 4000,
+        timerProgressBar: false,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'error',
+        title: 'No hay vehiculos reservados'
+      })
+}
+
+
+btnCompraReserva.addEventListener(`click`, ()=>{
+    reserva.length >= 1? aceptacionCompra() : errorMenos()
+})
+
 function nuevoAutoVender(array){
     let aniadirAutoMarca = document.getElementById("marcaAniadir");
     let aniadirAutoModelo = document.getElementById("modeloAniadir")
@@ -152,6 +227,11 @@ function noMasDex(array){
     array.length > 1? array.splice(1,1):null
 }
 
+function noMasDox(){
+    reserva = []
+    localStorage.removeItem("reserva")
+    modalReserva(reserva)
+}
 
 btnReserva.addEventListener(`click`, ()=>{
     modalReserva(reserva)
