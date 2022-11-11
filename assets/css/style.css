@@ -49,6 +49,11 @@
     gap: 7%;
 }
 
+/* .carousel-item{
+    height: 30rem;
+    background: rgb(41, 190, 216);
+} */
+
 .bodyRegister{
     display: flex;
     align-items: center;

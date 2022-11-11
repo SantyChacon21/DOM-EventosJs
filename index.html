@@ -42,8 +42,8 @@
                   Mi cuenta
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="./pages/login.html">Login</a></li>
-                  <li><a class="dropdown-item" href="./pages/register.html">Register</a></li>
+                  <li><a class="dropdown-item" href="">Login</a></li>
+                  <li><a class="dropdown-item" href="">Register</a></li>
         </ul>
 
         <!-- Modal Reserva -->
@@ -155,25 +155,52 @@
     <main>
         <h3>Bienvenido a Grafcars</h3>
 
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="./assets/img/3239755 (1).jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="./assets/img/chevrolet-s10-2021-992994 (1).jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+              <img src="./assets/img/Ford_Raptor_F-150_Pickup_545424_1920x1080 (1).jpg" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <div class=" d-flex flex-row flex-wrap justify-content-center gap-4 mt-5 mb-5 " id="divAutos"></div>
 
-
-        <div class=" d-flex flex-row flex-wrap justify-content-center gap-4" id="divAutos"></div>
-            <div class="card" style="width: 18rem;">
-            <div class="divImg"> <img src="./assets/img/32339 (1) (1).png" class="card-img-top imgDiv" alt="..."></div>
-                <div class="card-body">
-                <h5 class="card-title">Añadir a la venta</h5>
-                <form action="" id="myForm" class=" m">
-                    <div class=" mb-3">
-                        <input placeholder="Ingrese Marca" class=" rounded-2 col-5 " type="text" name="Ingrese" id="marcaAniadir">
-                        <input placeholder="Ingrese Modelo" class=" rounded-2 col-6" type="text" name="Ingrese" id="modeloAniadir">
-                    </div>
-                    <input placeholder="Ingrese año" class=" rounded-2 mb-3" type="text" name="Ingrese" id="anioAniadir">
-                    <input placeholder="Ingrese Km" class=" rounded-2 mb-3" type="text" name="Ingrese" id="kmAniadir">
-                    <input placeholder="Ingrese Precio" class=" rounded-2 mb-3" type="text" name="Ingrese" id="precioAniadir">
-                    <a href="#" class="btnAniadirVenta btn btn-danger" id="btnEnviarInfo">Añadir</a>
-                    </div>
-                </form>
+        <!-- Modal Auto -->
+        <div class="modal fade" id="modalAuto" tabindex="-1" aria-labelledby="modalAutoLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalAutoLabel">Consulta</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
+              <div class="modalReservaBody" id="modalAutoBody">
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+      </div>
+
         <div id="formularioConsulta"></div>
     </main>
     <footer>

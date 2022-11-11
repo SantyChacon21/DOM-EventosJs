@@ -52,9 +52,10 @@ function coleccionStock(array){
     coleccionAutos.innerHTML = ``
     array.forEach((Auto)=>{
         let nuevoProducto = document.createElement("div")
-        nuevoProducto.innerHTML = `<a href="" class=" text-decoration-none text-black"> <div class="card" id="divAutos" style="width: 18rem;">
-                                <div class="card-body">
-                                <h5 class="card-title">${Auto.marca} ${Auto.modelo}</h5>
+        nuevoProducto.innerHTML = `<a href="" class=" text-decoration-none text-black"  id="verCrts${Auto.id}"> 
+                                <div class="card btn" data-bs-toggle="modal" data-bs-target="#modalAuto" id="divAutos" style="width: 18rem;">
+                                <div class="card-body btn" data-bs-toggle="modal" data-bs-target="#modalAuto">
+                                <h5 class="card-title ">${Auto.marca} ${Auto.modelo}</h5>
                                 <p class="card-text">Año: ${Auto.anio} </p>
                                 <p class="card-text">Km: ${Auto.km}km</p>
                                 <p class="card-text">$${Auto.precio}</p>
@@ -84,9 +85,42 @@ function coleccionStock(array){
             reserva.length === 0? btnCompra.innerText= `Reservado`: btnCompra.innerText= `Reservar`
         }
 
+        btnCompra.addEventListener(`click`, ()=>{
+        modalAuto()
+        })
+        
+        let verCrts = document.getElementById(`verCrts${Auto.id}`)
+
+        verCrts.addEventListener(`click`, ()=>{
+            modalAuto()
+        })
+
+        console.log(verCrts)
+
+        function modalAuto (){
+    modalAutoBody.innerHTML =``
+
+    Auto.forEach((auto) =>{
+        let nuevoAuto = document.createElement (`div`)
+        nuevoAuto.innerHTML= `
+                            <a href="" class=" text-decoration-none text-black"> <div class="card" id="divAutos" style="width: 18rem;">
+                            <div class="card-body">
+                            <h5 class="card-title">${auto.marca} ${auto.modelo}</h5>
+                            <p class="card-text">Año: ${auto.anio} </p>
+                            <p class="card-text">Km: ${auto.km}km</p>
+                            <p class="card-text">$${auto.precio}</p>
+                            <a href="#" id="comprarBtn${auto.id}" class="btn btn-warning">Reservar</a>
+                            </div>
+                            </div> </a>
+                                `
+    })
+}
+
     })
 
 }
+
+
 
 
 let btnCompraReserva = document.getElementById(`btnCompraReserva`)
